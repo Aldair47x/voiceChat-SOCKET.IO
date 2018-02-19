@@ -14,11 +14,11 @@ block content
           span Can connect with multiple clients in real time through a voice chat
           br
   br
-  h1.text-description-tittle1 Press start to init the server:
+  h1.text-description-tittle1 Press start to init the chat:
   div.container-fluid
     div.row
       div.col-sm-6
-        form(action="/init", method="post", enctype="multipart/form-data")
-          input(class="btn btn-lg btn-info", name="start", type="submit", value="Start")
+        form(action="/chat", method="get", enctype="multipart/form-data")
+          input(class="btn btn-lg btn-info", value="Start", type="submit")
 
        
