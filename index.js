@@ -31,4 +31,8 @@ io.on('connection', (socket) => {
         socket.broadcast.emit('typing', data);
     });
 
+    socket.on('stream', function(audio){
+        socket.broadcast.emit('stream', audio);
+    });
+
 });

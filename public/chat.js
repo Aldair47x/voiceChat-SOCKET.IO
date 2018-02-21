@@ -6,7 +6,8 @@ var message = document.getElementById('message'),
       handle = document.getElementById('handle'),
       btn = document.getElementById('send'),
       output = document.getElementById('output'),
-      feedback = document.getElementById('feedback');
+      feedback = document.getElementById('feedback'),
+      speak = document.getElementById('speak');
 
 // Emit events
 btn.addEventListener('click', function(){
@@ -15,6 +16,13 @@ btn.addEventListener('click', function(){
         handle: handle.value
     });
     message.value = "";
+});
+
+btn.addEventListener('click', function(){
+    socket.emit('stream', {
+        audio: true,
+        video: false
+    });
 });
 
 message.addEventListener('keypress', function(){
@@ -29,4 +37,21 @@ socket.on('chat', function(data){
 
 socket.on('typing', function(data){
     feedback.innerHTML = '<p><em>' + data + ' is typing a message...</em></p>';
+});
+
+socket.on('stream', function(audio){
+
+    navigator.getUserMedia = (navigator.getUserMedia || navigator.webkitGetUserMedia || 
+    navigator.mozGetUserMedia || navigator.msgGetUserMedia);
+
+    if(navigator.getUserMedia)
+    {
+        navigator.getUserMedia({audio : true}, function(stream){
+            audio.src = window.URL.createObjectURL(stream);
+            console.log("Speakers on")
+        },
+    function(err){
+        throw err;
+    });
+}
 });
