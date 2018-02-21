@@ -15,9 +15,7 @@
 <h2>The Final Product! </h2>
 
 This aplication can run in a localhost or local lan changing the address on public/chat.js
-
 <br>
-
 <h1>Tips</h1>
 <h2>Restarting the server</h2>
 
